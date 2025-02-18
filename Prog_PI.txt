@@ -1,0 +1,323 @@
+0
+64
+240 
+241 # ADD:	[DST] = [DST] + [SRC]
+35 # add_loop
+233
+33
+235
+224
+99
+113
+4
+192
+241 # SUB:	[DST] = [DST] - [SRC]
+33
+233
+35
+232
+243
+33
+224
+99
+113
+14
+192
+208 # FILL:	[DST] = value/zero
+33
+224
+113
+26
+192
+35 # MOV:	[DST] = [SRC]
+233
+33
+224
+99
+113
+31
+192
+32 # multiply by 2 - REG0 = 2 * REG0,  extra bits are in R11
+0
+34
+0
+80
+3
+171
+245
+187
+192
+240 # Divide by a 4 bit value in r5:	[DST] = [DST] / reg5
+40 # div_r_set
+0
+177
+248
+177
+33
+186
+233
+186
+185
+220
+185
+241
+186
+245
+186
+245
+18
+75
+149 # try to sub the number
+18
+77
+133 # add back the number
+64
+78
+241 # div_r_sub
+149 # sub the number in case of carry
+106 # div_r_sub_ok
+121 # div_r_skip
+62
+186
+224
+186
+120
+52
+192 # RETURN DIV by R5
+32 # div_x_one 1/R4R5 (REG2 = 1 / R4R5)
+32
+80 # goto DES = 0
+25
+164
+28 # goto div_rr_one
+96
+209
+64 # goto div_r_set
+50
+38
+1
+64 # goto div_rr_set
+105
+164 # Divide by an 8 bit value in r4, r5:	[DST] = [DST] / R4R5
+20 # goto div_r
+49
+38 # Divide by an 8 bit value in r4, r5:	[DST] = [DST] / R4R5
+0
+40
+0
+177
+248
+177
+33
+233
+186
+220
+185
+241
+186
+245
+186
+183
+245
+183
+182
+245
+182
+18
+144
+183
+149
+183
+243
+182
+148
+182
+18
+152
+183
+133
+183
+182
+132
+182
+64
+153
+241
+183
+149
+183
+243
+182
+148
+182
+106
+121
+115
+186
+224
+186
+120
+107
+192 # RET FROM 1/x RESULT in DST (R0)
+208 # calculate arc tg (1/n)
+187
+80 # prepare 1/x
+86
+44
+1
+32
+0
+34
+32
+171
+246
+18
+179
+80
+3
+64
+181
+80
+13
+0
+0
+240
+210
+141
+189
+208
+140
+188
+32
+32
+175
+181
+174
+180
+80
+100
+174
+245
+26
+204
+80
+100
+32
+16
+34
+32
+80
+31
+173
+181
+172
+180
+80
+100
+33
+233
+28
+223
+113
+216
+192
+32
+0
+34
+16
+107
+171
+246
+18
+236
+80
+3
+64
+181
+80
+13
+64
+181
+32 # START
+0
+80
+25
+36
+5
+46
+25
+80
+161
+80
+39
+80
+39
+36
+239
+46
+239
+209
+80
+162
+208
+187
+80
+39
+80
+39
+0
+0
+0
+0
+32
+32
+34
+0
+80 # MOVE REG2 to REG0
+31
+36 # conversion from binary to decimal
+48
+37
+187 # write the first digit into status char
+228
+208 # begin loop
+187
+181
+248
+181
+32 # Multiply x10
+16
+34
+0
+80 # MOVE REG2 to REG0
+31
+80
+39
+80
+39
+32
+0
+34
+16
+80 # ADD XY
+3
+247
+139
+187
+80 
+39
+187
+37
+224 # write the result
+165
+28 # loop NEXT
+26
+32 # clean the remaining part of decimal conversion
+0
+80
+25
+96
+80
+25
+300
+301
