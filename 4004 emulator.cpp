@@ -1,11 +1,20 @@
-﻿//Program file format: <command in decimal> # <comment>
-//example
-//  
-//64 # jump to start
-//0
-//209 # ld 1
-//
+﻿/*
 
+Program file format : <command in decimal> # <comment>
+Example:
+1  64 # jump to start
+2  0
+3  209 # ld 1
+
+Keys for command string:
+4004_emulator.exe -f BusiCom.txt -ru -list -step -log
+-f <filename>   - txt file with program
+-ru             - russian localization
+-list           - list program before run
+-step           - step by step execution (<Space> to run next command, press <P> to disable/enable it, <TAB> to list all registers)
+-log            - log commands to console
+
+*/
 
 
 #include <Windows.h>
