@@ -1,18 +1,21 @@
 ﻿/*
-
-Program file format : <command in decimal> # <comment>
-Example:
-1  64 # jump to start
-2  0
-3  209 # ld 1
+Emulator of i4004 processor and Busicom calculator 141-PF (with original ROMs).
+I also attached a file with the Pi number calculation program (16 signs).
 
 Keys for command string:
 4004_emulator.exe -f BusiCom.txt -ru -list -step -log
--f <filename>   - txt file with program
--ru             - russian localization
--list           - list program before run
--step           - step by step execution (<Space> to run next command, press <P> to disable/enable it, <TAB> to list all registers)
--log            - log commands to console
+ -f <filename>   - txt file with program
+ -ru             - russian localization
+ -list           - list program before run
+ -step           - step by step execution (<Space> to run next command, press <P> to disable/enable it, <TAB> to list all registers)
+ -log            - log commands to console
+
+
+Program file format : <command in decimal> # <comment>
+Example:
+>1  64 # jump to start
+>2  0
+>3  209 # ld 1
 
 */
 
@@ -108,7 +111,7 @@ Genius keyboard;
 
 vector<int> commands;
 vector<string> comments;
-string filename = "BusiCom.txt"; //имя входного файла
+string filename = "Busicom.txt"; //имя входного файла
 
 //регистры процессора
 int ACC; //Accumulator
@@ -129,7 +132,7 @@ bool go_forward; //переменная для выхода из цикла об
 bool RU_lang = false; //локализация
 bool list_at_start = false; //вывод листинга на старте
 bool log_to_console = false; //логирование команд на консоль
-
+bool short_print = true; //сокращенный набор регистров для вывода
 
 void print_all();
 void list();
@@ -574,7 +577,7 @@ int main(int argc, char* argv[]) {
             }
             else CF = false;
 
-            if (log_to_console) cout << "ACC + R" << r << " = " << ACC << " CF=" << CF << endl;
+            if (log_to_console) cout << "ACC + R" << r << "(" << registers.at(r) << ") = " << ACC << " CF = " << CF << endl;
 
             //переход к следующей команде
             program_counter += 1;
@@ -636,7 +639,7 @@ int main(int argc, char* argv[]) {
                 registers.at(r) = 0; 
             }
 
-            if (log_to_console) cout << "increment R" << r << "(" << registers.at(r) << ") CF = " << CF << endl;
+            if (log_to_console) cout << "increment R" << r << "(" << registers.at(r) << ")" << endl;
 
             //переход к следующей команде
             program_counter += 1;
@@ -1141,7 +1144,7 @@ void print_all()
     cout << endl;
     cout << "================================================================" << endl;
     
-    if (log_to_console) // выводим регистры только в режиме пошагового исполнения
+    if (!short_print) // выводим регистры если не включен short_print
     {
 
         for (int i = 0; i < 16; i += 2)
@@ -1616,14 +1619,14 @@ void Epson::sync()
 {
     //если TEST = 0, то через N циклов он становится = 1. И наоборот. Эмуляция вращения барабана в принтере, с которым синхронизируется процессор.
     sync_counter++;
-    if (sync_counter > 1000 && TEST == 0)
+    if (sync_counter > 800 && TEST == 0)
     {
         TEST = 1;
         sync_counter = 0;
         curr_sector++; // перемещаем сектор на барабане
         if (curr_sector == 13) curr_sector = 0;
     }
-    if (sync_counter > 1000 && TEST == 1)
+    if (sync_counter > 800 && TEST == 1)
     {
         TEST = 0;
         sync_counter = 0;

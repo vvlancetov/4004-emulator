@@ -1,0 +1,73 @@
+32
+0
+34
+0
+216
+178
+33
+224
+242
+113
+6
+96
+114
+6
+32
+0
+34
+0
+216
+178
+33
+228 # WR0
+242
+229 # WR1
+242
+230 # WR2
+242
+231 # WR3
+242
+96
+114
+20
+0
+0
+32
+0
+34
+0
+216
+178
+33
+233
+248 # Decrement Accumulator
+224
+113
+40
+96
+114
+40 # start of Char decrease
+32
+0
+34
+0
+216 # ldm 8
+178 # xch r2
+33 # src R0R1
+236 # RD0
+248 # Decrement Accumulator
+228 # WR0
+237 # RD1 
+248  # Decrement Accumulator
+229 # WR1
+238 # RD2
+248 # Decrement Accumulator
+230 # WR2
+239 # RD3
+248 # Decrement Accumulator
+231 # WR3
+96 # INC R0
+114 # isz R2
+55
+64
+34
