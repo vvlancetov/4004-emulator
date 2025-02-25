@@ -9,6 +9,7 @@ Keys for command string:
  -step           - step by step execution (<Space> to run next command, press <P> to disable/enable it, <TAB> to list all registers)
  -log            - log commands to console
 
+
 Program file format : <command in decimal> # <comment>
 Example:
 >1  64 # jump to start
