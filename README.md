@@ -15,3 +15,9 @@ Example:
 >1  64 # jump to start
 >2  0
 >3  209 # ld 1
+
+
+Attached programs:
+BusiCom.txt - original ROMs from Busicom calculator
+Prog_PI.txt - calculating of PI
+Memtest.txt - fill RAM with numbers
